@@ -334,11 +334,13 @@ Trade creation transaction:
 
 Trade acceptance transaction:
 
-- `ADD_ACCEPT_TRADE_TX_LINK_HERE`
+https://solscan.io/account/3AFMgYRsSbjQfSM5PvQsnKdfV8MmhNNBRyB2zFbPpNi4?cluster=devnet
 
 Trade completion / release transaction:
 
-- `ADD_COMPLETE_TRADE_TX_LINK_HERE`
+https://solscan.io/tx/2EszAYiNcKwpV4QHgF9rsnDno4LD1cxUPsZfiu4D6eXnwcM7GHKpEn3HV4uzsqYdmk6hKJPk8oYquuBAj81AbAU8?cluster=devnet
+
+
 
 These should point to the exact public demo flow you want judges to inspect.
 
