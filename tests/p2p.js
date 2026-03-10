@@ -1,7 +1,7 @@
 const anchor = require('@coral-xyz/anchor');
 const { TOKEN_PROGRAM_ID, ASSOCIATED_TOKEN_PROGRAM_ID, createMint, createAccount, mintTo, getAccount, getOrCreateAssociatedTokenAccount } = require('@solana/spl-token');
 
-describe('P2P Escrow Complete Test Suite - Phase 1 + Phase 2', () => {
+describe('Escrow Engine Complete Test Suite - Phase 1 + Phase 2', () => {
   let expect;
   const provider = anchor.AnchorProvider.env();
   anchor.setProvider(provider);
@@ -727,6 +727,6 @@ describe('P2P Escrow Complete Test Suite - Phase 1 + Phase 2', () => {
 
   // Summary
   after(() => {
-    console.log('\n🚀 Your P2P Escrow system is fully tested and functional!');
+    console.log('\n🚀 Your Escrow Engine system is fully tested and functional!');
   });
 });

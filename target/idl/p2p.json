@@ -5,15 +5,9 @@
     "version": "0.1.0",
     "spec": "0.1.0"
   },
-  "docs": [
-    "Solia P2P Escrow System - Main Program Module"
-  ],
   "instructions": [
     {
       "name": "accept_trade",
-      "docs": [
-        "Accept an existing trade - Routes to accept_trade instruction"
-      ],
       "discriminator": [
         139,
         218,
@@ -27,38 +21,23 @@
       "accounts": [
         {
           "name": "trade",
-          "docs": [
-            "Trade account to be updated"
-          ],
           "writable": true
         },
         {
           "name": "counterparty",
-          "docs": [
-            "Counterparty accepting the trade"
-          ],
           "writable": true,
           "signer": true
         },
         {
           "name": "counterparty_token_account",
-          "docs": [
-            "Counterparty's token account (for validation)"
-          ],
           "writable": true
         },
         {
           "name": "vault_token_account",
-          "docs": [
-            "Global vault token account"
-          ],
           "writable": true
         },
         {
           "name": "vault_authority",
-          "docs": [
-            "Vault authority PDA that owns the vault token account"
-          ],
           "pda": {
             "seeds": [
               {
@@ -86,9 +65,6 @@
         },
         {
           "name": "global_state",
-          "docs": [
-            "Global state to check if paused"
-          ],
           "pda": {
             "seeds": [
               {
@@ -113,10 +89,6 @@
         },
         {
           "name": "frozen_status",
-          "docs": [
-            "Frozen status for counterparty (required to enforce freezes)"
-          ],
-          "writable": true,
           "pda": {
             "seeds": [
               {
@@ -144,9 +116,6 @@
         },
         {
           "name": "token_program",
-          "docs": [
-            "Token program for account validation"
-          ],
           "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
         },
         {
@@ -154,17 +123,13 @@
           "address": "11111111111111111111111111111111"
         },
         {
-          "name": "rent",
-          "address": "SysvarRent111111111111111111111111111111111"
+          "name": "rent"
         }
       ],
       "args": []
     },
     {
       "name": "admin_force_close",
-      "docs": [
-        "Admin: Force-close any trade (not just disputed)"
-      ],
       "discriminator": [
         244,
         156,
@@ -178,7 +143,6 @@
       "accounts": [
         {
           "name": "admin",
-          "writable": true,
           "signer": true,
           "relations": [
             "global_state"
@@ -186,16 +150,10 @@
         },
         {
           "name": "trade",
-          "docs": [
-            "Trade to force close (can be ANY status, not just disputed)"
-          ],
           "writable": true
         },
         {
           "name": "global_state",
-          "docs": [
-            "Global state to increment action count"
-          ],
           "writable": true,
           "pda": {
             "seeds": [
@@ -248,54 +206,19 @@
         },
         {
           "name": "counterparty_token_account",
-          "docs": [
-            "Buyer's token account (based on trade type)"
-          ],
           "writable": true
         },
         {
           "name": "initiator_token_account",
-          "docs": [
-            "Seller's token account (based on trade type)"
-          ],
           "writable": true
         },
         {
           "name": "vault_token_account",
-          "docs": [
-            "Global vault token account"
-          ],
           "writable": true
         },
         {
           "name": "admin_log",
-          "docs": [
-            "Admin log entry"
-          ],
-          "writable": true,
-          "pda": {
-            "seeds": [
-              {
-                "kind": "const",
-                "value": [
-                  97,
-                  100,
-                  109,
-                  105,
-                  110,
-                  95,
-                  108,
-                  111,
-                  103
-                ]
-              },
-              {
-                "kind": "account",
-                "path": "global_state.admin_action_count",
-                "account": "GlobalState"
-              }
-            ]
-          }
+          "writable": true
         },
         {
           "name": "token_program",
@@ -319,9 +242,6 @@
     },
     {
       "name": "admin_freeze_user",
-      "docs": [
-        "Admin: Freeze or unfreeze a user from trading"
-      ],
       "discriminator": [
         107,
         188,
@@ -343,9 +263,6 @@
         },
         {
           "name": "global_state",
-          "docs": [
-            "Global state to increment action count"
-          ],
           "writable": true,
           "pda": {
             "seeds": [
@@ -371,9 +288,6 @@
         },
         {
           "name": "frozen_status",
-          "docs": [
-            "Frozen user status account - init OR mutate"
-          ],
           "writable": true,
           "pda": {
             "seeds": [
@@ -401,40 +315,11 @@
           }
         },
         {
-          "name": "target_user",
-          "docs": [
-            "The user to freeze/unfreeze"
-          ]
+          "name": "target_user"
         },
         {
           "name": "admin_log",
-          "docs": [
-            "Admin log entry"
-          ],
-          "writable": true,
-          "pda": {
-            "seeds": [
-              {
-                "kind": "const",
-                "value": [
-                  97,
-                  100,
-                  109,
-                  105,
-                  110,
-                  95,
-                  108,
-                  111,
-                  103
-                ]
-              },
-              {
-                "kind": "account",
-                "path": "global_state.admin_action_count",
-                "account": "GlobalState"
-              }
-            ]
-          }
+          "writable": true
         },
         {
           "name": "system_program",
@@ -454,9 +339,6 @@
     },
     {
       "name": "auto_cancel",
-      "docs": [
-        "Auto-cancel (seller only, after 30 min timeout)"
-      ],
       "discriminator": [
         83,
         161,
@@ -473,14 +355,10 @@
           "writable": true
         },
         {
-          "name": "initiator",
-          "writable": true
+          "name": "initiator"
         },
         {
           "name": "vault_authority",
-          "docs": [
-            "Vault authority PDA that owns the vault token account"
-          ],
           "pda": {
             "seeds": [
               {
@@ -508,23 +386,14 @@
         },
         {
           "name": "initiator_token_account",
-          "docs": [
-            "Initiator's token account (to receive refund)"
-          ],
           "writable": true
         },
         {
           "name": "counterparty_token_account",
-          "docs": [
-            "Counterparty's token account (to receive refund for Buy trades)"
-          ],
           "writable": true
         },
         {
           "name": "vault_token_account",
-          "docs": [
-            "Global vault token account"
-          ],
           "writable": true
         },
         {
@@ -540,9 +409,6 @@
     },
     {
       "name": "auto_dispute",
-      "docs": [
-        "Auto-dispute (buyer only, after 45 min timeout)"
-      ],
       "discriminator": [
         10,
         12,
@@ -560,9 +426,6 @@
         },
         {
           "name": "caller",
-          "docs": [
-            "Caller (must be buyer/counterparty)"
-          ],
           "signer": true
         }
       ],
@@ -570,9 +433,6 @@
     },
     {
       "name": "buyer_mark_sent",
-      "docs": [
-        "Buyer submits payment transaction ID"
-      ],
       "discriminator": [
         75,
         118,
@@ -602,9 +462,6 @@
     },
     {
       "name": "cancel_trade",
-      "docs": [
-        "Cancel or Refund trade"
-      ],
       "discriminator": [
         124,
         66,
@@ -622,14 +479,10 @@
         },
         {
           "name": "initiator",
-          "writable": true,
           "signer": true
         },
         {
           "name": "vault_authority",
-          "docs": [
-            "Vault authority PDA that owns the vault token account"
-          ],
           "pda": {
             "seeds": [
               {
@@ -657,16 +510,10 @@
         },
         {
           "name": "initiator_token_account",
-          "docs": [
-            "Initiator's token account (to receive refund)"
-          ],
           "writable": true
         },
         {
           "name": "vault_token_account",
-          "docs": [
-            "Global vault token account"
-          ],
           "writable": true
         },
         {
@@ -678,9 +525,6 @@
     },
     {
       "name": "create_trade",
-      "docs": [
-        "Create a new trade with token locking - Routes to create_trade instruction"
-      ],
       "discriminator": [
         183,
         82,
@@ -694,45 +538,27 @@
       "accounts": [
         {
           "name": "trade",
-          "docs": [
-            "Trade account to be initialized"
-          ],
           "writable": true,
           "signer": true
         },
         {
           "name": "initiator",
-          "docs": [
-            "Trade initiator (payer and signer)"
-          ],
           "writable": true,
           "signer": true
         },
         {
-          "name": "mint",
-          "docs": [
-            "Token mint for the trade"
-          ]
+          "name": "mint"
         },
         {
           "name": "initiator_token_account",
-          "docs": [
-            "Initiator's token account (must be owned by initiator)"
-          ],
           "writable": true
         },
         {
           "name": "vault_token_account",
-          "docs": [
-            "Global vault ATA for the specified mint"
-          ],
           "writable": true
         },
         {
           "name": "global_state",
-          "docs": [
-            "Global state to check if paused"
-          ],
           "pda": {
             "seeds": [
               {
@@ -757,10 +583,6 @@
         },
         {
           "name": "frozen_status",
-          "docs": [
-            "Frozen status for initiator (required to enforce freezes)"
-          ],
-          "writable": true,
           "pda": {
             "seeds": [
               {
@@ -788,9 +610,6 @@
         },
         {
           "name": "vault_authority",
-          "docs": [
-            "Vault authority PDA that owns the vault token account"
-          ],
           "pda": {
             "seeds": [
               {
@@ -818,9 +637,6 @@
         },
         {
           "name": "system_program",
-          "docs": [
-            "Required system programs"
-          ],
           "address": "11111111111111111111111111111111"
         },
         {
@@ -828,12 +644,10 @@
           "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
         },
         {
-          "name": "associated_token_program",
-          "address": "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL"
+          "name": "associated_token_program"
         },
         {
-          "name": "rent",
-          "address": "SysvarRent111111111111111111111111111111111"
+          "name": "rent"
         }
       ],
       "args": [
@@ -869,9 +683,6 @@
     },
     {
       "name": "emergency_pause",
-      "docs": [
-        "Admin: Emergency pause/unpause entire system"
-      ],
       "discriminator": [
         21,
         143,
@@ -885,7 +696,6 @@
       "accounts": [
         {
           "name": "admin",
-          "writable": true,
           "signer": true,
           "relations": [
             "global_state"
@@ -893,9 +703,6 @@
         },
         {
           "name": "global_state",
-          "docs": [
-            "Global state to pause/unpause"
-          ],
           "writable": true,
           "pda": {
             "seeds": [
@@ -921,33 +728,7 @@
         },
         {
           "name": "admin_log",
-          "docs": [
-            "Admin log entry"
-          ],
-          "writable": true,
-          "pda": {
-            "seeds": [
-              {
-                "kind": "const",
-                "value": [
-                  97,
-                  100,
-                  109,
-                  105,
-                  110,
-                  95,
-                  108,
-                  111,
-                  103
-                ]
-              },
-              {
-                "kind": "account",
-                "path": "global_state.admin_action_count",
-                "account": "GlobalState"
-              }
-            ]
-          }
+          "writable": true
         },
         {
           "name": "system_program",
@@ -967,9 +748,6 @@
     },
     {
       "name": "initialize",
-      "docs": [
-        "Initialize the program"
-      ],
       "discriminator": [
         175,
         175,
@@ -985,9 +763,6 @@
     },
     {
       "name": "initialize_global_state",
-      "docs": [
-        "Initialize global state (Called once by admin)"
-      ],
       "discriminator": [
         232,
         254,
@@ -1043,11 +818,6 @@
     },
     {
       "name": "mark_completed",
-      "docs": [
-        "DEPRECATED: Use seller_confirm_received instead",
-        "This is kept for backward compatibility only",
-        "Mark trade as completed by one party - Routes to mark_completed instruction"
-      ],
       "discriminator": [
         116,
         162,
@@ -1061,44 +831,26 @@
       "accounts": [
         {
           "name": "trade",
-          "docs": [
-            "Trade account to be updated"
-          ],
           "writable": true
         },
         {
           "name": "user",
-          "docs": [
-            "User marking completion (initiator or counterparty)"
-          ],
           "signer": true
         },
         {
           "name": "initiator_token_account",
-          "docs": [
-            "Initiator's token account for token release"
-          ],
           "writable": true
         },
         {
           "name": "counterparty_token_account",
-          "docs": [
-            "Counterparty's token account for token release"
-          ],
           "writable": true
         },
         {
           "name": "vault_token_account",
-          "docs": [
-            "GLOBAL VAULT TOKEN ACCOUNT (replaces per-trade escrow_vault)"
-          ],
           "writable": true
         },
         {
           "name": "vault_authority",
-          "docs": [
-            "Vault authority PDA that owns the vault token account"
-          ],
           "pda": {
             "seeds": [
               {
@@ -1126,9 +878,6 @@
         },
         {
           "name": "token_program",
-          "docs": [
-            "Token program for transfers"
-          ],
           "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
         }
       ],
@@ -1136,9 +885,6 @@
     },
     {
       "name": "relist_trade",
-      "docs": [
-        "Relist a cancelled trade"
-      ],
       "discriminator": [
         54,
         167,
@@ -1156,20 +902,13 @@
         },
         {
           "name": "initiator",
-          "writable": true,
-          "signer": true,
-          "relations": [
-            "trade"
-          ]
+          "signer": true
         }
       ],
       "args": []
     },
     {
       "name": "resolve_dispute",
-      "docs": [
-        "Admin function to resolve disputes - Routes to resolve_dispute instruction"
-      ],
       "discriminator": [
         231,
         6,
@@ -1187,8 +926,10 @@
         },
         {
           "name": "admin",
-          "writable": true,
-          "signer": true
+          "signer": true,
+          "relations": [
+            "global_state"
+          ]
         },
         {
           "name": "vault_authority",
@@ -1219,30 +960,19 @@
         },
         {
           "name": "buyer_token_account",
-          "docs": [
-            "Buyer's token account (based on trade type)"
-          ],
           "writable": true
         },
         {
           "name": "initiator_token_account",
-          "docs": [
-            "Seller's token account (based on trade type)"
-          ],
           "writable": true
         },
         {
           "name": "vault_token_account",
-          "docs": [
-            "Global vault token account"
-          ],
           "writable": true
         },
         {
           "name": "global_state",
-          "docs": [
-            "Global state for admin authorization"
-          ],
+          "writable": true,
           "pda": {
             "seeds": [
               {
@@ -1279,9 +1009,6 @@
     },
     {
       "name": "seller_confirm_received",
-      "docs": [
-        "Seller confirms receiving payment"
-      ],
       "discriminator": [
         223,
         6,
@@ -1302,29 +1029,38 @@
           "signer": true
         },
         {
-          "name": "initiator",
-          "docs": [
-            "Initiator to receive rent (same as seller in most cases)",
-            "Must be the trade initiator"
-          ],
-          "writable": true
+          "name": "initiator"
         },
         {
           "name": "global_state",
-          "writable": true
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  108,
+                  111,
+                  98,
+                  97,
+                  108,
+                  95,
+                  115,
+                  116,
+                  97,
+                  116,
+                  101
+                ]
+              }
+            ]
+          }
         },
         {
           "name": "fee_receiver",
-          "docs": [
-            "The wallet designated in global_state to receive fees"
-          ],
           "writable": true
         },
         {
           "name": "vault_authority",
-          "docs": [
-            "Vault authority PDA that owns the vault token account"
-          ],
           "pda": {
             "seeds": [
               {
@@ -1352,23 +1088,14 @@
         },
         {
           "name": "vault_token_account",
-          "docs": [
-            "Global vault token account (owned by vault_authority PDA)"
-          ],
           "writable": true
         },
         {
           "name": "buyer_token_account",
-          "docs": [
-            "Buyer's (counterparty's) token account - where tokens will be sent"
-          ],
           "writable": true
         },
         {
           "name": "token_program",
-          "docs": [
-            "Token program"
-          ],
           "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
         }
       ],
@@ -1376,9 +1103,6 @@
     },
     {
       "name": "set_payment_destination",
-      "docs": [
-        "Seller sets payment destination for Buy trades after acceptance"
-      ],
       "discriminator": [
         96,
         226,
@@ -1392,16 +1116,10 @@
       "accounts": [
         {
           "name": "trade",
-          "docs": [
-            "Trade account to be updated"
-          ],
           "writable": true
         },
         {
           "name": "seller",
-          "docs": [
-            "Seller (counterparty) setting payment destination"
-          ],
           "signer": true
         }
       ],
@@ -1414,9 +1132,6 @@
     },
     {
       "name": "update_fee_config",
-      "docs": [
-        "Admin: Update fee configuration"
-      ],
       "discriminator": [
         104,
         184,
@@ -1430,7 +1145,28 @@
       "accounts": [
         {
           "name": "global_state",
-          "writable": true
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  108,
+                  111,
+                  98,
+                  97,
+                  108,
+                  95,
+                  115,
+                  116,
+                  97,
+                  116,
+                  101
+                ]
+              }
+            ]
+          }
         },
         {
           "name": "admin",
@@ -1461,19 +1197,6 @@
     }
   ],
   "accounts": [
-    {
-      "name": "AdminLog",
-      "discriminator": [
-        40,
-        47,
-        171,
-        225,
-        68,
-        74,
-        64,
-        18
-      ]
-    },
     {
       "name": "FrozenUser",
       "discriminator": [
@@ -1715,85 +1438,82 @@
     {
       "code": 6000,
       "name": "TradeExpired",
-      "msg": "Trade has expired and cannot be accepted"
+      "msg": "The trade has expired"
     },
     {
       "code": 6001,
       "name": "InvalidStatus",
-      "msg": "Trade is not in the correct status for this operation"
+      "msg": "The trade is in an invalid status for this action"
     },
     {
       "code": 6002,
       "name": "Unauthorized",
-      "msg": "User is not authorized for this action"
+      "msg": "The caller is not authorized for this action"
     },
     {
       "code": 6003,
       "name": "UnauthorizedAdmin",
-      "msg": "Only authorized admin can resolve disputes"
+      "msg": "The admin signer is not authorized"
     },
     {
       "code": 6004,
       "name": "PaymentNotMarkedSent",
-      "msg": "Buyer has not marked payment as sent"
+      "msg": "Buyer payment has not been marked as sent"
     },
     {
       "code": 6005,
       "name": "InvalidVaultAuthority",
-      "msg": "Invalid vault authority"
+      "msg": "Vault authority does not match the expected PDA"
     },
     {
       "code": 6006,
       "name": "PaymentAlreadySubmitted",
-      "msg": "Payment already submitted by buyer"
+      "msg": "Payment proof was already submitted"
     },
     {
       "code": 6007,
       "name": "DeadlineNotReached",
-      "msg": "Deadline not reached yet"
+      "msg": "The deadline has not been reached yet"
     },
     {
       "code": 6008,
       "name": "SystemPaused",
-      "msg": "System is currently paused by admin"
+      "msg": "The system is currently paused"
     },
     {
       "code": 6009,
       "name": "UserFrozen",
-      "msg": "User is frozen and cannot perform trades"
+      "msg": "The user is frozen and cannot interact with the program"
     },
     {
       "code": 6010,
       "name": "InvalidPaymentMethod",
-      "msg": "Invalid payment method selected"
+      "msg": "The payment method or parameters are invalid"
     },
     {
       "code": 6011,
       "name": "UnsupportedTradeType",
-      "msg": "Unsupported trade type for current flow"
+      "msg": "This trade type or admin outcome is unsupported"
     },
     {
       "code": 6012,
       "name": "NumericalOverflow",
-      "msg": "Numerical overflow in fee calculation"
+      "msg": "A numerical overflow occurred"
     },
     {
       "code": 6013,
       "name": "InvalidMint",
-      "msg": "Invalid mint for the fee receiver account"
+      "msg": "The provided token mint is invalid"
     },
     {
       "code": 6014,
       "name": "PaymentDestinationMissing",
-      "msg": "Seller payment destination not set"
+      "msg": "A payment destination is required"
     }
   ],
   "types": [
     {
       "name": "AdminActionLogged",
-      "docs": [
-        "Event emitted when admin performs any action"
-      ],
       "type": {
         "kind": "struct",
         "fields": [
@@ -1830,9 +1550,6 @@
     },
     {
       "name": "AdminActionType",
-      "docs": [
-        "Types of admin actions"
-      ],
       "type": {
         "kind": "enum",
         "variants": [
@@ -1843,97 +1560,31 @@
             "name": "UnfreezeUser"
           },
           {
+            "name": "PauseSystem"
+          },
+          {
+            "name": "UnpauseSystem"
+          },
+          {
             "name": "ForceCloseTrade"
           },
           {
-            "name": "OverrideDispute"
-          },
-          {
-            "name": "GlobalPause"
-          },
-          {
-            "name": "GlobalUnpause"
-          },
-          {
-            "name": "UserPause"
-          },
-          {
-            "name": "UserUnpause"
-          }
-        ]
-      }
-    },
-    {
-      "name": "AdminLog",
-      "docs": [
-        "Log entry for admin actions (for auditability)"
-      ],
-      "type": {
-        "kind": "struct",
-        "fields": [
-          {
-            "name": "admin_id",
-            "docs": [
-              "Admin who performed the action"
-            ],
-            "type": "pubkey"
-          },
-          {
-            "name": "action",
-            "docs": [
-              "Type of action performed"
-            ],
-            "type": {
-              "defined": {
-                "name": "AdminActionType"
-              }
-            }
-          },
-          {
-            "name": "timestamp",
-            "docs": [
-              "Timestamp of action"
-            ],
-            "type": "i64"
-          },
-          {
-            "name": "reason",
-            "docs": [
-              "Reason provided"
-            ],
-            "type": "string"
-          },
-          {
-            "name": "target",
-            "docs": [
-              "Target user/trade affected"
-            ],
-            "type": "pubkey"
-          },
-          {
-            "name": "log_index",
-            "docs": [
-              "Log sequence number"
-            ],
-            "type": "u64"
+            "name": "UpdateFeeConfig"
           }
         ]
       }
     },
     {
       "name": "DisputeOverridden",
-      "docs": [
-        "Event emitted when admin overrides dispute"
-      ],
       "type": {
         "kind": "struct",
         "fields": [
           {
-            "name": "trade_id",
+            "name": "trade",
             "type": "pubkey"
           },
           {
-            "name": "overridden_by",
+            "name": "admin",
             "type": "pubkey"
           },
           {
@@ -1943,32 +1594,25 @@
           {
             "name": "reason",
             "type": "string"
-          },
-          {
-            "name": "timestamp",
-            "type": "i64"
           }
         ]
       }
     },
     {
       "name": "DisputeResolved",
-      "docs": [
-        "Event emitted when dispute is resolved by admin"
-      ],
       "type": {
         "kind": "struct",
         "fields": [
           {
-            "name": "trade_id",
+            "name": "trade",
             "type": "pubkey"
           },
           {
-            "name": "resolved_by",
+            "name": "admin",
             "type": "pubkey"
           },
           {
-            "name": "favor_buyer",
+            "name": "released_to_initiator",
             "type": "bool"
           }
         ]
@@ -1976,45 +1620,27 @@
     },
     {
       "name": "FrozenUser",
-      "docs": [
-        "Account tracking if a user is frozen from trading"
-      ],
       "type": {
         "kind": "struct",
         "fields": [
           {
             "name": "user",
-            "docs": [
-              "The frozen user's pubkey"
-            ],
             "type": "pubkey"
           },
           {
             "name": "is_frozen",
-            "docs": [
-              "Is this user currently frozen?"
-            ],
             "type": "bool"
           },
           {
             "name": "frozen_at",
-            "docs": [
-              "Timestamp when frozen"
-            ],
             "type": "i64"
           },
           {
             "name": "frozen_by",
-            "docs": [
-              "Admin who froze this user"
-            ],
             "type": "pubkey"
           },
           {
             "name": "reason",
-            "docs": [
-              "Reason for freezing"
-            ],
             "type": "string"
           }
         ]
@@ -2022,73 +1648,43 @@
     },
     {
       "name": "GlobalState",
-      "docs": [
-        "Global program state for emergency controls"
-      ],
       "type": {
         "kind": "struct",
         "fields": [
           {
             "name": "is_paused",
-            "docs": [
-              "Is the entire program paused?"
-            ],
             "type": "bool"
           },
           {
             "name": "admin",
-            "docs": [
-              "Admin authority"
-            ],
             "type": "pubkey"
           },
           {
             "name": "paused_at",
-            "docs": [
-              "Timestamp when paused (if paused)"
-            ],
             "type": "i64"
           },
           {
             "name": "pause_reason",
-            "docs": [
-              "Reason for pause"
-            ],
             "type": "string"
           },
           {
             "name": "admin_action_count",
-            "docs": [
-              "Total number of admin actions taken"
-            ],
             "type": "u64"
           },
           {
             "name": "fee_enabled",
-            "docs": [
-              "Is fee collection enabled?"
-            ],
             "type": "bool"
           },
           {
             "name": "fee_bps",
-            "docs": [
-              "Fee in basis points (e.g., 20 = 0.2%)"
-            ],
             "type": "u16"
           },
           {
             "name": "fee_wallet",
-            "docs": [
-              "Wallet that receives the fees"
-            ],
             "type": "pubkey"
           },
           {
             "name": "min_fee_amount",
-            "docs": [
-              "Minimum fee in lamports/tokens (micro-trade protection)"
-            ],
             "type": "u64"
           }
         ]
@@ -2096,33 +1692,39 @@
     },
     {
       "name": "PaymentConfirmed",
-      "docs": [
-        "Event emitted when seller confirms payment received"
-      ],
       "type": {
         "kind": "struct",
         "fields": [
           {
-            "name": "trade_id",
+            "name": "trade",
             "type": "pubkey"
           },
           {
             "name": "seller",
             "type": "pubkey"
+          },
+          {
+            "name": "released_to",
+            "type": "pubkey"
+          },
+          {
+            "name": "amount",
+            "type": "u64"
+          },
+          {
+            "name": "fee_charged",
+            "type": "u64"
           }
         ]
       }
     },
     {
       "name": "PaymentMarkedSent",
-      "docs": [
-        "Event emitted when buyer marks payment as sent"
-      ],
       "type": {
         "kind": "struct",
         "fields": [
           {
-            "name": "trade_id",
+            "name": "trade",
             "type": "pubkey"
           },
           {
@@ -2132,20 +1734,21 @@
           {
             "name": "payment_txid",
             "type": "string"
+          },
+          {
+            "name": "timestamp",
+            "type": "i64"
           }
         ]
       }
     },
     {
       "name": "SystemPaused",
-      "docs": [
-        "Event emitted when system is paused"
-      ],
       "type": {
         "kind": "struct",
         "fields": [
           {
-            "name": "paused_by",
+            "name": "admin",
             "type": "pubkey"
           },
           {
@@ -2161,14 +1764,11 @@
     },
     {
       "name": "SystemUnpaused",
-      "docs": [
-        "Event emitted when system is unpaused"
-      ],
       "type": {
         "kind": "struct",
         "fields": [
           {
-            "name": "unpaused_by",
+            "name": "admin",
             "type": "pubkey"
           },
           {
@@ -2180,38 +1780,23 @@
     },
     {
       "name": "Trade",
-      "docs": [
-        "Trade account structure storing all trade-related data"
-      ],
       "type": {
         "kind": "struct",
         "fields": [
           {
             "name": "initiator",
-            "docs": [
-              "Buyer or Seller who created the order"
-            ],
             "type": "pubkey"
           },
           {
             "name": "counterparty",
-            "docs": [
-              "The party who accepts the trade"
-            ],
             "type": "pubkey"
           },
           {
             "name": "amount",
-            "docs": [
-              "Token amount being traded (USDC on Solana)"
-            ],
             "type": "u64"
           },
           {
             "name": "trade_type",
-            "docs": [
-              "Type of trade (Buy or Sell)"
-            ],
             "type": {
               "defined": {
                 "name": "TradeType"
@@ -2220,9 +1805,6 @@
           },
           {
             "name": "status",
-            "docs": [
-              "Current status of the trade"
-            ],
             "type": {
               "defined": {
                 "name": "TradeStatus"
@@ -2231,134 +1813,80 @@
           },
           {
             "name": "created_at",
-            "docs": [
-              "Unix timestamp of creation"
-            ],
             "type": "i64"
           },
           {
             "name": "expires_at",
-            "docs": [
-              "Trade expiry timestamp"
-            ],
             "type": "i64"
           },
           {
             "name": "initiator_completed",
-            "docs": [
-              "Has initiator marked trade complete"
-            ],
             "type": "bool"
           },
           {
             "name": "counterparty_completed",
-            "docs": [
-              "Has counterparty marked trade complete"
-            ],
             "type": "bool"
           },
           {
             "name": "mint",
-            "docs": [
-              "Token mint address (USDC on Solana)"
-            ],
             "type": "pubkey"
           },
           {
             "name": "payment_chain",
-            "docs": [
-              "Payment chain: 0=TON, 1=TRON, 2=BNB, 3=Polygon"
-            ],
             "type": "u8"
           },
           {
             "name": "payment_token",
-            "docs": [
-              "Payment token type: \"TON\", \"USDT-TRC20\", \"USDT-BEP20\", \"USDC-POLY\""
-            ],
             "type": "string"
           },
           {
             "name": "payment_wallet",
-            "docs": [
-              "Seller's wallet address on the payment chain"
-            ],
             "type": "string"
           },
           {
             "name": "expected_payment_amount",
-            "docs": [
-              "Expected payment amount in that chain's token (smallest units)"
-            ],
             "type": "u64"
           },
           {
             "name": "payment_txid",
-            "docs": [
-              "Payment transaction ID from the off-chain network"
-            ],
             "type": {
               "option": "string"
             }
           },
           {
             "name": "buyer_marked_sent",
-            "docs": [
-              "Has buyer submitted payment proof?"
-            ],
             "type": "bool"
           },
           {
             "name": "seller_confirmed",
-            "docs": [
-              "Has seller confirmed receiving payment?"
-            ],
             "type": "bool"
           },
           {
             "name": "accepted_at",
-            "docs": [
-              "Timestamp when trade was accepted"
-            ],
             "type": "i64"
           },
           {
             "name": "payment_submitted_at",
-            "docs": [
-              "Timestamp when payment proof was submitted"
-            ],
             "type": "i64"
           },
           {
             "name": "forced_closed_by",
-            "docs": [
-              "Admin who forced closure (if any)"
-            ],
             "type": {
               "option": "pubkey"
             }
           },
           {
             "name": "forced_closed_at",
-            "docs": [
-              "Timestamp when admin force-closed"
-            ],
             "type": "i64"
           },
           {
             "name": "admin_override_reason",
-            "docs": [
-              "Admin override reason (if dispute was overridden)"
-            ],
             "type": {
               "option": "string"
             }
           },
           {
             "name": "admin_override_outcome",
-            "docs": [
-              "Who won if admin overrode dispute (0=buyer, 1=seller, 2=split)"
-            ],
             "type": {
               "option": "u8"
             }
@@ -2368,53 +1896,64 @@
     },
     {
       "name": "TradeAccepted",
-      "docs": [
-        "Event emitted when a trade is accepted by counterparty"
-      ],
       "type": {
         "kind": "struct",
         "fields": [
           {
-            "name": "trade_id",
+            "name": "trade",
+            "type": "pubkey"
+          },
+          {
+            "name": "initiator",
             "type": "pubkey"
           },
           {
             "name": "counterparty",
             "type": "pubkey"
+          },
+          {
+            "name": "accepted_at",
+            "type": "i64"
           }
         ]
       }
     },
     {
       "name": "TradeCompleted",
-      "docs": [
-        "Event emitted when trade is fully completed by both parties"
-      ],
       "type": {
         "kind": "struct",
         "fields": [
           {
-            "name": "trade_id",
+            "name": "trade",
             "type": "pubkey"
+          },
+          {
+            "name": "released_to",
+            "type": "pubkey"
+          },
+          {
+            "name": "amount",
+            "type": "u64"
           }
         ]
       }
     },
     {
       "name": "TradeCreated",
-      "docs": [
-        "Event emitted when a new trade is created"
-      ],
       "type": {
         "kind": "struct",
         "fields": [
           {
-            "name": "trade_id",
+            "name": "trade",
             "type": "pubkey"
           },
           {
             "name": "initiator",
             "type": "pubkey"
+          },
+          {
+            "name": "amount",
+            "type": "u64"
           },
           {
             "name": "trade_type",
@@ -2425,58 +1964,28 @@
             }
           },
           {
-            "name": "amount",
-            "type": "u64"
-          },
-          {
             "name": "mint",
             "type": "pubkey"
+          },
+          {
+            "name": "created_at",
+            "type": "i64"
           }
         ]
       }
     },
     {
       "name": "TradeDisputed",
-      "docs": [
-        "Event emitted when a trade is disputed"
-      ],
       "type": {
         "kind": "struct",
         "fields": [
           {
-            "name": "trade_id",
+            "name": "trade",
             "type": "pubkey"
           },
           {
-            "name": "disputed_by",
+            "name": "caller",
             "type": "pubkey"
-          }
-        ]
-      }
-    },
-    {
-      "name": "TradeForceClosed",
-      "docs": [
-        "Event emitted when admin force-closes a trade"
-      ],
-      "type": {
-        "kind": "struct",
-        "fields": [
-          {
-            "name": "trade_id",
-            "type": "pubkey"
-          },
-          {
-            "name": "closed_by",
-            "type": "pubkey"
-          },
-          {
-            "name": "outcome",
-            "type": "u8"
-          },
-          {
-            "name": "reason",
-            "type": "string"
           },
           {
             "name": "timestamp",
@@ -2486,29 +1995,55 @@
       }
     },
     {
-      "name": "TradeMarkedCompleted",
-      "docs": [
-        "Event emitted when a party marks trade as completed"
-      ],
+      "name": "TradeForceClosed",
       "type": {
         "kind": "struct",
         "fields": [
           {
-            "name": "trade_id",
+            "name": "trade",
             "type": "pubkey"
           },
           {
-            "name": "who",
+            "name": "admin",
             "type": "pubkey"
+          },
+          {
+            "name": "outcome",
+            "type": "u8"
+          },
+          {
+            "name": "reason",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "name": "TradeMarkedCompleted",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "trade",
+            "type": "pubkey"
+          },
+          {
+            "name": "user",
+            "type": "pubkey"
+          },
+          {
+            "name": "initiator_completed",
+            "type": "bool"
+          },
+          {
+            "name": "counterparty_completed",
+            "type": "bool"
           }
         ]
       }
     },
     {
       "name": "TradeStatus",
-      "docs": [
-        "Enum defining all possible trade states"
-      ],
       "type": {
         "kind": "enum",
         "variants": [
@@ -2535,9 +2070,6 @@
     },
     {
       "name": "TradeType",
-      "docs": [
-        "Enum defining trade types"
-      ],
       "type": {
         "kind": "enum",
         "variants": [
@@ -2552,9 +2084,6 @@
     },
     {
       "name": "UserFrozen",
-      "docs": [
-        "Event emitted when user is frozen"
-      ],
       "type": {
         "kind": "struct",
         "fields": [
@@ -2563,25 +2092,18 @@
             "type": "pubkey"
           },
           {
-            "name": "frozen_by",
+            "name": "admin",
             "type": "pubkey"
           },
           {
             "name": "reason",
             "type": "string"
-          },
-          {
-            "name": "timestamp",
-            "type": "i64"
           }
         ]
       }
     },
     {
       "name": "UserUnfrozen",
-      "docs": [
-        "Event emitted when user is unfrozen"
-      ],
       "type": {
         "kind": "struct",
         "fields": [
@@ -2590,12 +2112,8 @@
             "type": "pubkey"
           },
           {
-            "name": "unfrozen_by",
+            "name": "admin",
             "type": "pubkey"
-          },
-          {
-            "name": "timestamp",
-            "type": "i64"
           }
         ]
       }

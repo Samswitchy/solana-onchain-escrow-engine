@@ -1,0 +1,8 @@
+flowchart TD
+    U[User Wallets] --> C[Client / Frontend]
+    C --> P[Solana Program: Solia Escrow Engine]
+    P --> T[Trade Account]
+    P --> G[Global State PDA]
+    P --> F[Frozen User PDA]
+    P --> V[Vault Authority PDA]
+    V --> TA[Escrow Vault Token Account]

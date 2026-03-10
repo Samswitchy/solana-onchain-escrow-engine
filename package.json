@@ -1,15 +1,14 @@
 {
-  "name": "frontend",
+  "name": "solia-onchain-escrow-engine",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "eslint"
+    "client": "node client/example-client.js",
+    "test:anchor": "anchor test",
+    "test:mocha": "npx mocha -t 1000000 tests/**/*.js"
   },
   "dependencies": {
-    "@coral-xyz/anchor": "^0.32.1",
+    "@coral-xyz/anchor": "^0.31.1",
     "@solana/spl-token": "^0.4.14",
     "@solana/wallet-adapter-base": "^0.9.27",
     "@solana/wallet-adapter-react": "^0.15.39",
@@ -28,14 +27,17 @@
     "tweetnacl": "^1.0.3"
   },
   "devDependencies": {
+    "@mermaid-js/mermaid-cli": "^11.12.0",
     "@tailwindcss/postcss": "^4.1.17",
     "@types/node": "^20",
     "@types/qrcode": "^1.5.6",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@types/speakeasy": "^2.0.10",
+    "chai": "^5.2.1",
     "eslint": "^9",
     "eslint-config-next": "16.0.3",
+    "mocha": "^11.7.4",
     "tailwindcss": "^4.1.17",
     "typescript": "^5"
   }

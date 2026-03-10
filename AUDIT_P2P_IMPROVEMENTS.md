@@ -1,4 +1,4 @@
-# P2P Program Audit (Draft)
+# Escrow Engine Audit (Draft)
 
 ## Scope
 - `programs/p2p/src/*`

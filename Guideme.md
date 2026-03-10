@@ -1,7 +1,7 @@
-# P2P Program Deployment Guide - Hello Solia Implementation
+# Escrow Engine Deployment Guide - Hello Solia Implementation
 
 ## Overview
-This document details the complete process used to deploy the "Hello Solia" function in our P2P Anchor program to Solana Devnet.
+This document details the complete process used to deploy the "Hello Solia" function in our escrow Anchor program to Solana Devnet.
 
 **Submission Repo**: `https://github.com/SoliaNetwork/solia-p2p-escrow`  
 **Smart Contract Repo**: `https://github.com/Solia-Network/solia_contracts.git`  

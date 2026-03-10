@@ -5,7 +5,7 @@ This file is for judges and reviewers opening this submission repository.
 ## Main Repositories
 
 - Submission repo:
-  https://github.com/SoliaNetwork/solia-p2p-escrow
+  https://github.com/Samswitchy/solana-onchain-escrow-engine
 
 - Smart contract repo:
   https://github.com/Solia-Network/solia_contracts.git
@@ -30,4 +30,4 @@ If you are reviewing this submission repo first, use the links above to jump dir
 - the contract implementation repo
 - the application repo
 
-These links are also repeated in `README.md` for visibility.
+The current primary submission context is `README.md`. This file is kept as a reviewer shortcut list.
