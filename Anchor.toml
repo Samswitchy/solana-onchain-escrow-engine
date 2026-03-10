@@ -1,0 +1,22 @@
+[toolchain]
+
+[features]
+resolution = true
+skip-lint = true
+
+[programs.devnet]
+escrow = "2EwoDAWuJL45t1hTW3188e8QK5oRoxZRZA56Bot6E6q9"
+p2p = "J9GcXnuwFQZqpA7rSXSt44Dt4zhtyZ1RQPZdSYfXWkpt"
+
+[registry]
+url = "https://api.apr.dev"
+
+[provider]
+cluster = "devnet"
+wallet = "~/.config/solana/id.json"
+
+[workspace]
+members = ["programs/p2p"]
+
+[scripts]
+test = "npx mocha -t 1000000 tests/**/*.js"

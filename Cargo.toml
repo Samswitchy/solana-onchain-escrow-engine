@@ -1,0 +1,14 @@
+[workspace]
+resolver = "2"
+members = [
+    "programs/p2p"
+]
+exclude = [
+    "programs/escrow"
+]
+
+[profile.release]
+overflow-checks = true
+
+[workspace.dependencies]
+anchor-lang = "0.31.1"
